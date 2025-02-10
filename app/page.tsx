@@ -2,10 +2,11 @@
 "use client";
 
 import React from "react";
-import { Web3ProviderNetwork } from "@web3-react/network";
+import { Web3ReactProvider, createWeb3ReactRoot } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 import Home from "./components/pages/Home";
-import { Web3ReactProvider } from "@web3-react/core";
+
+const Web3ProviderNetwork = createWeb3ReactRoot("NETWORK");
 
 function getLibrary(provider: any) {
   const library = new Web3Provider(provider);
@@ -15,7 +16,7 @@ function getLibrary(provider: any) {
 
 const App = () => (
   <Web3ProviderNetwork getLibrary={getLibrary}>
-    <Web3ReactProvider connectors={[]}>
+    <Web3ReactProvider getLibrary={getLibrary}>
       <Home />
     </Web3ReactProvider>
   </Web3ProviderNetwork>
