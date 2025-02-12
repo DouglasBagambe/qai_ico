@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ethersproject/providers": "^5.7.2",
+    "@tanstack/react-query": "^5.66.0",
+    "@wagmi/chains": "^1.8.0",
+    "@wagmi/core": "^2.16.4",
     "@web3-react/core": "^8.2.3",
     "@web3-react/network": "^8.2.3",
     "ethers": "^6.13.5",
@@ -16,10 +20,12 @@
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-multi-carousel": "^2.8.5"
+    "viem": "^2.23.0",
+    "wagmi": "^2.14.11"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/estree": "^1.0.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
