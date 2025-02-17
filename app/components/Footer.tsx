@@ -137,8 +137,9 @@ const Footer = () => {
             </div>
             <div className="flex justify-center">
               <a
-                href=""
-                download
+                href="/assets/whitepaper/QAITokenEVCI_V3.pptx"
+                download="QAITokenEVCI_V3.pptx"
+                type="application/vnd.openxmlformats-officedocument.presentationml.presentation"
                 className="text-white border border-[#952dc0] rounded-full px-6 py-2 mt-8 inline-block"
               >
                 Download Whitepaper
@@ -147,7 +148,7 @@ const Footer = () => {
           </div>
         </div>
         <p className="text-center text-white pt-[50px]">
-          ©2023 BSECA. All rights reserved
+          ©2025 BSECA. All rights reserved
         </p>
       </div>
     </footer>
