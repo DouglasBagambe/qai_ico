@@ -13,7 +13,7 @@ const Footer = () => {
             <a href="index.html">
               <div className="spin"></div>
               <span className="flex m-auto text-center mt-2 inline-block text-xl ml-5 md:ml-[1.5rem]">
-                BSECA
+                BSECAaa
               </span>
             </a>
           </div>
@@ -137,12 +137,15 @@ const Footer = () => {
             </div>
             <div className="flex justify-center">
               <a
-                href="/assets/whitepaper/QAITokenEVCI_V3.pptx"
-                download="QAITokenEVCI_V3.pptx"
-                type="application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                href={`https://docs.google.com/viewer?url=${encodeURIComponent(
+                  window.location.origin +
+                    "/assets/whitepaper/QAITokenEVCI_V3.pptx"
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white border border-[#952dc0] rounded-full px-6 py-2 mt-8 inline-block"
               >
-                Download Whitepaper
+                View & Download Whitepaper
               </a>
             </div>
           </div>

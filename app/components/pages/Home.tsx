@@ -19,7 +19,7 @@ const Home = () => {
             <div className="flex-1">
               <div>
                 <h1 className="lg:text-[2.5rem] font-bold text-[1.8rem] pr-7">
-                  The Most Securitized & Convenient Wallet To Store Cryptos &
+                  aaThe Most Securitized & Convenient Wallet To Store Cryptos &
                   NFT's
                 </h1>
                 <p className="lg:text-[18px]  text-[16px] mt-7 pr-7">
