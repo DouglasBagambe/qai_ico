@@ -7,6 +7,8 @@
 import React, { useState } from "react";
 // import Team from "@/components/Team";
 
+import RoadmapSection from "../RoadmapSection";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartLine,
@@ -377,28 +379,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section
-        className="bg-[#040347] text-white pt-[6.9rem] lg:pb-[50px]"
-        id="roadmap"
-      >
-        <h1 className="flex justify-center m-auto text-3xl font-base mb-5 ">
-          Roadmap
-        </h1>
-        <div className="flex justify-center">
-          <div className="w-[80rem] flex justify-center">
-            {/* <img
-              src={process.env.PUBLIC_URL + "assets/roadmap.svg"}
-              width="100%"
-            ></img> */}
-            <img
-              className="w-full h-[auto]"
-              src="/assets/roadmap.svg"
-              width="100%"
-              alt="Banner"
-            />
-          </div>
-        </div>
-      </section>
+      <RoadmapSection />
       <section className="bg-[#040347] text-white pt-[30px] pb-[50px]">
         <div className="max-w-[1700px] mx-auto p-5">
           <h4 className="text-white lg:text-[35px] text-[22px] text-center lg:mb-[120px] mb-[60px] mb-[30px]">
