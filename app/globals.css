@@ -71,7 +71,7 @@ code {
 .spin {
   width: 100px;
   height: 100px;
-  background: url(/public/assets/dainellogo.svg) no-repeat 0 0;
+  background: url(/assets/dainellogo.svg) no-repeat 0 0;
   background-size: cover;
 
   animation: spin 100s linear infinite;
