@@ -5,6 +5,18 @@
 import React from "react";
 
 const Footer = () => {
+  const handleDownload = () => {
+    const fileUrl = "/assets/whitepaper/QAITokenEVCI_V3.pptx";
+
+    // Create a temporary link element
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.setAttribute("download", "QAITokenEVCI_V3.pptx"); // Set the download attribute
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <footer className="bg-[#0d0d2b] pt-[50px] pb-[30px] text-white body-font">
       <div className="max-w-[1300px] px-5 lg:pt-[50px] mx-auto">
@@ -13,7 +25,7 @@ const Footer = () => {
             <a href="index.html">
               <div className="spin"></div>
               <span className="flex m-auto text-center mt-2 inline-block text-xl ml-5 md:ml-[1.5rem]">
-                BSECAaa
+                BSECA
               </span>
             </a>
           </div>
@@ -136,17 +148,12 @@ const Footer = () => {
               </a>
             </div>
             <div className="flex justify-center">
-              <a
-                href={`https://docs.google.com/viewer?url=${encodeURIComponent(
-                  window.location.origin +
-                    "/assets/whitepaper/QAITokenEVCI_V3.pptx"
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white border border-[#952dc0] rounded-full px-6 py-2 mt-8 inline-block"
+              <button
+                onClick={handleDownload}
+                className="text-white border border-[#952dc0] rounded-full px-6 py-2 mt-8 inline-block hover:bg-[#952dc0] transition-colors duration-300"
               >
-                View & Download Whitepaper
-              </a>
+                Download Whitepaper
+              </button>
             </div>
           </div>
         </div>

@@ -7,9 +7,46 @@
 import React, { useState } from "react";
 // import Team from "@/components/Team";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChartLine,
+  faUser,
+  faGlobe,
+  faCreditCard,
+} from "@fortawesome/free-solid-svg-icons";
+
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const [number, setNumber] = useState<number | null>(null);
+
+  const handlePDFView = () => {
+    const pdfPath = `${window.location.origin}/assets/whitepaper/QAITokenEVCI_V3.pdf`;
+    const newWindow = window.open("", "_blank");
+    if (newWindow) {
+      newWindow.document.write(`
+      <html>
+        <head>
+          <title>BSECA QAI-Token Whitepaper</title>
+          <style>
+            body, html {
+              margin: 0;
+              padding: 0;
+              height: 100%;
+              overflow: hidden;
+            }
+            iframe {
+              width: 100%;
+              height: 100%;
+              border: none;
+            }
+          </style>
+        </head>
+        <body>
+          <iframe src="${pdfPath}" type="application/pdf" width="100%" height="100%"></iframe>
+        </body>
+      `);
+    }
+  };
 
   return (
     <>
@@ -19,7 +56,7 @@ const Home = () => {
             <div className="flex-1">
               <div>
                 <h1 className="lg:text-[2.5rem] font-bold text-[1.8rem] pr-7">
-                  aaThe Most Securitized & Convenient Wallet To Store Cryptos &
+                  The Most Securitized & Convenient Wallet To Store Cryptos &
                   NFT's
                 </h1>
                 <p className="lg:text-[18px]  text-[16px] mt-7 pr-7">
@@ -29,24 +66,22 @@ const Home = () => {
                   lowest fees ever.
                 </p>
                 <div className="flex mt-3 md:flex-row flex-col lg:gap-2 gap-5 mt-[20px]">
-                  {/* <a href=""
-                                        class="px-6 button-g py-2 rounded-[15px] min-w-[150px] text-center  bg-gradient-to-r from-[#a42e9a] to-[#5951f6]">Claim
-                                        Airdrop</a> */}
-                  <a
-                    href=""
-                    className="px-6 button-g py-2 rounded-[15px] min-w-[300px]  text-center bg-gradient-to-r from-[#a42e9a] to-[#5951f6]"
+                  <button
+                    onClick={handlePDFView}
+                    className="px-6 button-g py-2 rounded-[15px] min-w-[300px] text-center bg-gradient-to-r from-[#a42e9a] to-[#5951f6] hover:opacity-90 transition-opacity"
                   >
                     Whitepaper
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
             <div className="flex-1">
               <img
-                className="w-full h-[auto] "
-                src={process.env.PUBLIC_URL + "assets/banner.gif"}
+                className="w-full h-[auto]"
+                src="/assets/banner.gif"
                 width="100%"
-              ></img>
+                alt="Banner"
+              />
             </div>
           </div>
         </div>
@@ -56,28 +91,43 @@ const Home = () => {
           <div className="grid lg:grid-cols-4 grid-cols-2">
             <div className="text-center lg:mb-0 mb-[50px]">
               <span className="bg-[#5964da] w-[80px] h-[80px] flex justify-center items-center mx-auto mb-3 inline-block px-[20px] py-[20px] rounded-full">
-                <i className="fas text-[30px] font-bold text-[#09090a] fa-chart-line"></i>
+                <FontAwesomeIcon
+                  icon={faChartLine}
+                  className="text-[30px] text-[#09090a]"
+                />
               </span>
               <p className="text-[15px] mb-3">Wallet</p>
               <p>Crypto Wallet</p>
             </div>
+
             <div className="text-center lg:mb-0 mb-[50px]">
               <span className="bg-[#5964da] w-[80px] h-[80px] flex justify-center items-center mx-auto mb-3 inline-block px-[20px] py-[20px] rounded-full">
-                <i className="fas text-[30px] font-bold text-[#09090a] fa-user"></i>
+                <FontAwesomeIcon
+                  icon={faUser}
+                  className="text-[30px] text-[#09090a]"
+                />
               </span>
               <p className="text-[15px] mb-3">Exchange</p>
               <p>Built In Exchange</p>
             </div>
+
             <div className="text-center lg:mb-0 mb-[50px]">
               <span className="bg-[#5964da] w-[80px] h-[80px] flex justify-center items-center mx-auto mb-3 inline-block px-[20px] py-[20px] rounded-full">
-                <i className="fas text-[30px] font-bold text-[#09090a] fa-globe"></i>
+                <FontAwesomeIcon
+                  icon={faGlobe}
+                  className="text-[30px] text-[#09090a]"
+                />
               </span>
               <p className="text-[15px] mb-3">Staking</p>
               <p>Stake & Earn</p>
             </div>
+
             <div className="text-center lg:mb-0 mb-[50px]">
               <span className="bg-[#5964da] w-[80px] h-[80px] flex justify-center items-center mx-auto mb-3 inline-block px-[20px] py-[20px] rounded-full">
-                <i className="fas text-[30px] font-bold text-[#09090a] fa-credit-card"></i>
+                <FontAwesomeIcon
+                  icon={faCreditCard}
+                  className="text-[30px] text-[#09090a]"
+                />
               </span>
               <p className="text-[15px] mb-3">Cards</p>
               <p>BSECA Master Cards</p>
@@ -314,10 +364,16 @@ const Home = () => {
         </h1>
         <div className="flex justify-center">
           <div className="w-[80rem] flex justify-center">
-            <img
+            {/* <img
               src={process.env.PUBLIC_URL + "assets/chart.svg"}
               width="100%"
-            ></img>
+            ></img> */}
+            <img
+              className="w-full h-[auto]"
+              src="/assets/chart.svg"
+              width="100%"
+              alt="Banner"
+            />
           </div>
         </div>
       </section>
@@ -330,10 +386,16 @@ const Home = () => {
         </h1>
         <div className="flex justify-center">
           <div className="w-[80rem] flex justify-center">
-            <img
+            {/* <img
               src={process.env.PUBLIC_URL + "assets/roadmap.svg"}
               width="100%"
-            ></img>
+            ></img> */}
+            <img
+              className="w-full h-[auto]"
+              src="/assets/roadmap.svg"
+              width="100%"
+              alt="Banner"
+            />
           </div>
         </div>
       </section>
@@ -344,22 +406,34 @@ const Home = () => {
           </h4>
           <div className="grid lg:grid-cols-6 md:grid-cols-3 gap-6 sm:grid-cols-3 ">
             <div>
-              <img src="assets/slide_1.png" className="w-[150px] mx-auto" />
+              <a href="#">
+                <img src="assets/slide_1.png" className="w-[150px] mx-auto" />
+              </a>
             </div>
             <div>
-              <img src="assets/slide_2.png" className="w-[150px] mx-auto" />
+              <a href="#">
+                <img src="assets/slide_2.png" className="w-[150px] mx-auto" />
+              </a>
             </div>
             <div>
-              <img src="assets/slide_3.png" className="w-[150px] mx-auto" />
+              <a href="#">
+                <img src="assets/slide_3.png" className="w-[150px] mx-auto" />
+              </a>
             </div>
             <div>
-              <img src="assets/slide_4.png" className="w-[150px] mx-auto" />
+              <a href="#">
+                <img src="assets/slide_4.png" className="w-[150px] mx-auto" />
+              </a>
             </div>
             <div>
-              <img src="assets/slide_5.png" className="w-[150px] mx-auto" />
+              <a href="#">
+                <img src="assets/slide_5.png" className="w-[150px] mx-auto" />
+              </a>
             </div>
             <div>
-              <img src="assets/slide_6.png" className="w-[150px] mx-auto" />
+              <a href="#">
+                <img src="assets/slide_6.png" className="w-[150px] mx-auto" />
+              </a>
             </div>
           </div>
         </div>
