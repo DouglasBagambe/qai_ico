@@ -1,9 +1,172 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+declare global {
+  interface Window {
+    ethereum: any;
+  }
+}
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
+  const [walletConnected, setWalletConnected] = useState(false);
+  const [walletAddress, setWalletAddress] = useState("");
+  const [walletBalance, setWalletBalance] = useState("");
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [chainId, setChainId] = useState("");
+
+  // Check if wallet is already connected on component mount
+  useEffect(() => {
+    checkIfWalletIsConnected();
+
+    // Setup event listeners for wallet changes
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", handleAccountsChanged);
+      window.ethereum.on("chainChanged", handleChainChanged);
+    }
+
+    return () => {
+      if (window.ethereum) {
+        window.ethereum.removeListener(
+          "accountsChanged",
+          handleAccountsChanged
+        );
+        window.ethereum.removeListener("chainChanged", handleChainChanged);
+      }
+    };
+  }, []);
+
+  // Handle account changes
+  const handleAccountsChanged = (accounts: string[]) => {
+    if (accounts.length === 0) {
+      // User disconnected their wallet
+      setWalletConnected(false);
+      setWalletAddress("");
+      setWalletBalance("");
+    } else {
+      setWalletConnected(true);
+      setWalletAddress(accounts[0]);
+      fetchWalletBalance(accounts[0]);
+    }
+  };
+
+  // Handle chain changes
+  const handleChainChanged = (chainId: React.SetStateAction<string>) => {
+    setChainId(chainId);
+    // Refresh page on chain change as recommended by MetaMask
+    window.location.reload();
+  };
+
+  // Function to check if wallet is already connected
+  const checkIfWalletIsConnected = async () => {
+    try {
+      if (!window.ethereum) return;
+
+      const accounts = await window.ethereum.request({
+        method: "eth_accounts",
+      });
+      if (accounts.length > 0) {
+        setWalletConnected(true);
+        setWalletAddress(accounts[0]);
+        fetchWalletBalance(accounts[0]);
+
+        // Get chain ID
+        const chainId = await window.ethereum.request({
+          method: "eth_chainId",
+        });
+        setChainId(chainId);
+      }
+    } catch (error) {
+      console.error("Error checking wallet connection:", error);
+    }
+  };
+
+  // Connect wallet function
+  const connectWallet = async () => {
+    try {
+      setIsConnecting(true);
+
+      if (!window.ethereum) {
+        alert("Please install a Web3 wallet like MetaMask!");
+        setIsConnecting(false);
+        return;
+      }
+
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+
+      if (accounts.length > 0) {
+        setWalletConnected(true);
+        setWalletAddress(accounts[0]);
+        fetchWalletBalance(accounts[0]);
+
+        // Get chain ID
+        const chainId = await window.ethereum.request({
+          method: "eth_chainId",
+        });
+        setChainId(chainId);
+      }
+    } catch (error) {
+      console.error("Error connecting wallet:", error);
+    } finally {
+      setIsConnecting(false);
+    }
+  };
+
+  // Fetch wallet balance without ethers.js
+  const fetchWalletBalance = async (address: string) => {
+    try {
+      if (!window.ethereum) return;
+
+      const balance = await window.ethereum.request({
+        method: "eth_getBalance",
+        params: [address, "latest"],
+      });
+
+      // Convert hex balance to decimal and then to ETH (divide by 10^18)
+      const balanceInWei = parseInt(balance, 16);
+      const balanceInEth = balanceInWei / 1e18;
+
+      setWalletBalance(balanceInEth.toFixed(4));
+    } catch (error) {
+      console.error("Error fetching balance:", error);
+    }
+  };
+
+  // Disconnect wallet (note: this doesn't actually disconnect the wallet from the site due to Web3 limitations,
+  // it just resets our app's state)
+  const disconnectWallet = () => {
+    setWalletConnected(false);
+    setWalletAddress("");
+    setWalletBalance("");
+  };
+
+  // Format address for display
+  const formatAddress = (address: string) => {
+    return `${address.substring(0, 6)}...${address.substring(
+      address.length - 4
+    )}`;
+  };
+
+  // Get network name based on chainId
+  const getNetworkName = () => {
+    switch (chainId) {
+      case "0x1":
+        return "ETH";
+      case "0x89":
+        return "MATIC";
+      case "0x38":
+        return "BNB";
+      case "0xa86a":
+        return "AVAX";
+      default:
+        return "ETH";
+    }
+  };
 
   return (
     <>
@@ -55,11 +218,11 @@ const Header = () => {
           </div>
           <div>
             <div
-              className={`flex-1  bg-[#040347] justify-self-center pb-3 mt-5 md:block md:pb-0 md:mt-0 ${
+              className={`flex-1 bg-[#040347] justify-self-center pb-3 mt-5 md:block md:pb-0 md:mt-0 ${
                 navbar ? "block" : "hidden"
               }`}
             >
-              <ul className="w-full items-center text-xl justify-center space-y-8 md:flex md:space-x-6 md:space-y-0 cursor-pointer ml-5 ">
+              <ul className="w-full items-center text-xl justify-center space-y-8 md:flex md:space-x-6 md:space-y-0 cursor-pointer ml-5">
                 <li>
                   <a className="items-center text-white justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                     Home
@@ -86,9 +249,6 @@ const Header = () => {
                     Values
                   </a>
                 </li>
-                {/* <li>
-                                    <a href="#team" className="items-center text-white justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">Team</a>
-                                </li> */}
                 <li>
                   <a
                     href="#roadmap"
@@ -98,9 +258,34 @@ const Header = () => {
                   </a>
                 </li>
                 <li>
-                  <a className="block  py-2 lg:text-[16px] px-4  text-[#008000] border-[#008000] border  rounded-full">
-                    Connect Wallets
-                  </a>
+                  {walletConnected ? (
+                    <div className="flex flex-col md:flex-row items-center">
+                      <div className="px-4 py-2 lg:text-[16px] text-[#00FF00] border-[#008000] border rounded-full flex items-center">
+                        <span className="mr-2 md:block hidden">
+                          {formatAddress(walletAddress)}
+                        </span>
+                        <span className="md:ml-2">
+                          {walletBalance} {getNetworkName()}
+                        </span>
+                      </div>
+                      <button
+                        onClick={disconnectWallet}
+                        className="text-red-400 text-sm hover:text-red-600 mt-2 md:mt-0 md:ml-2"
+                      >
+                        Disconnect
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={connectWallet}
+                      disabled={isConnecting}
+                      className={`block py-2 lg:text-[16px] px-4 text-[#008000] border-[#008000] border rounded-full hover:bg-[#008000] hover:bg-opacity-10 transition duration-300 ${
+                        isConnecting ? "opacity-70" : ""
+                      }`}
+                    >
+                      {isConnecting ? "Connecting..." : "Connect Wallet"}
+                    </button>
+                  )}
                 </li>
               </ul>
             </div>
