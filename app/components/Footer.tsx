@@ -19,7 +19,7 @@ const Footer = () => {
     // Create a temporary link element
     const link = document.createElement("a");
     link.href = fileUrl;
-    link.setAttribute("download", "QAITokenEVCI_V3.pptx"); // Set the download attribute
+    link.setAttribute("download", "QAITokenEVCI_Use_Case.pdf"); // Set the download attribute
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
