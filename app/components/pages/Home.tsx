@@ -5,8 +5,6 @@
 "use client";
 
 import React, { useState } from "react";
-// import Team from "@/components/Team";
-
 import RoadmapSection from "../RoadmapSection";
 import TokenomicsChart from "../TokenomicsChart";
 
@@ -29,7 +27,7 @@ const Home = () => {
       newWindow.document.write(`
       <html>
         <head>
-          <title>BSECA QAI-Token Whitepaper</title>
+          <title>QAI-Token EVCI Whitepaper</title>
           <style>
             body, html {
               margin: 0;
@@ -59,14 +57,13 @@ const Home = () => {
             <div className="flex-1">
               <div>
                 <h1 className="lg:text-[2.5rem] font-bold text-[1.8rem] pr-7">
-                  The Most Securitized & Convenient Wallet To Store Cryptos &
-                  NFT's
+                  Simplifying EV Charging with Secure Blockchain Technology
                 </h1>
-                <p className="lg:text-[18px]  text-[16px] mt-7 pr-7">
-                  Buying cryptos doesn’t have to be hurtful. With BSECA, you
-                  will experience a pain-free transaction as we keep the process
-                  is simple. Safeguard your wallet and coins while paying the
-                  lowest fees ever.
+                <p className="lg:text-[18px] text-[16px] mt-7 pr-7">
+                  QAI Token offers a simpler, cost-saving, and privacy-friendly
+                  path for EV charging. Using decentralized blockchain network
+                  and AI tools with quantum-resistant security, we're making EV
+                  charging more accessible and secure than ever before.
                 </p>
                 <div className="flex mt-3 md:flex-row flex-col lg:gap-2 gap-5 mt-[20px]">
                   <button
@@ -89,7 +86,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="bg-[#040347] text-white ">
+      <section className="bg-[#040347] text-white">
         <div className="max-w-[1200px] mx-auto p-5">
           <div className="grid lg:grid-cols-4 grid-cols-2">
             <div className="text-center lg:mb-0 mb-[50px]">
@@ -99,8 +96,8 @@ const Home = () => {
                   className="text-[30px] text-[#09090a]"
                 />
               </span>
-              <p className="text-[15px] mb-3">Wallet</p>
-              <p>Crypto Wallet</p>
+              <p className="text-[15px] mb-3">Security</p>
+              <p>End-to-End Encryption</p>
             </div>
 
             <div className="text-center lg:mb-0 mb-[50px]">
@@ -110,8 +107,8 @@ const Home = () => {
                   className="text-[30px] text-[#09090a]"
                 />
               </span>
-              <p className="text-[15px] mb-3">Exchange</p>
-              <p>Built In Exchange</p>
+              <p className="text-[15px] mb-3">Authentication</p>
+              <p>Multi-Factor Security</p>
             </div>
 
             <div className="text-center lg:mb-0 mb-[50px]">
@@ -121,8 +118,8 @@ const Home = () => {
                   className="text-[30px] text-[#09090a]"
                 />
               </span>
-              <p className="text-[15px] mb-3">Staking</p>
-              <p>Stake & Earn</p>
+              <p className="text-[15px] mb-3">Detection</p>
+              <p>Real-Time Monitoring</p>
             </div>
 
             <div className="text-center lg:mb-0 mb-[50px]">
@@ -132,8 +129,8 @@ const Home = () => {
                   className="text-[30px] text-[#09090a]"
                 />
               </span>
-              <p className="text-[15px] mb-3">Cards</p>
-              <p>BSECA Master Cards</p>
+              <p className="text-[15px] mb-3">Payments</p>
+              <p>Secure Integration</p>
             </div>
           </div>
         </div>
@@ -144,32 +141,25 @@ const Home = () => {
       >
         <div className="max-w-[1200px] mx-auto p-5">
           <div className="flex lg:flex-row flex-col lg:gap-[150px] gap-[50px]">
-            <div className="flex-1 flex justify-center items-center ">
-              <img
-                src="assets/banner-2.png"
-                className=" w-full h-[auto] ball"
-              />
+            <div className="flex-1 flex justify-center items-center">
+              <img src="assets/banner-2.png" className="w-full h-[auto] ball" />
             </div>
             <div className="flex-1">
               <div>
                 <h1 className="lg:text-[2.5rem] font-bold text-[2rem] pr-7">
-                  Why Choose HCISS?
+                  Why Choose QAI Token?
                 </h1>
-                <p className="lg:text-[18px]  text-[16px] mt-4 pr-7">
-                  Health Blockchain Security Services is a Web 3 SECaaS that
-                  specializes in the Blockchain Security space. HCISS provides
-                  cybersecurity analytic solution services using its Chainlink
-                  Decentralized Oracle Node Network called BSECAlink. HCISS was
-                  founded with a vision to uplift trust and security throughout
-                  the digital spectrum and with that, a group of technical and
-                  marketing teams has been established in the USA, Africa and
-                  Asia.
+                <p className="lg:text-[18px] text-[16px] mt-4 pr-7">
+                  QAI Token combines blockchain security, pilot AI, and quantum
+                  technology to create a safer, more efficient EV charging
+                  ecosystem. We focus on privacy-first payments, minimal data
+                  collection, and quantum-resistant security to ensure your
+                  transactions are safe and private.
                 </p>
-
                 <a
                   href=""
                   onClick={() => setShowModal(false)}
-                  className="buytoken px-6 py-2 text-white rounded-[15px] lg:min-w-[300px] min-w-[250px] text-center py-3 inline-block mt-[30px] px-[40px]  bg-gradient-to-r from-[#a42e9a] to-[#5951f6]"
+                  className="buytoken px-6 py-2 text-white rounded-[15px] lg:min-w-[300px] min-w-[250px] text-center py-3 inline-block mt-[30px] px-[40px] bg-gradient-to-r from-[#a42e9a] to-[#5951f6]"
                 >
                   Buy Token
                 </a>
@@ -181,8 +171,8 @@ const Home = () => {
 
       <section className="lg:py-[100px] py-[50px]">
         <div className="max-w-[1300px] mx-auto p-5">
-          <h3 className="lg:text-[25px] text-black text-[22px]  mb-[50px] text-center font-bold">
-            What is BSECAlink
+          <h3 className="lg:text-[25px] text-black text-[22px] mb-[50px] text-center font-bold">
+            Core Features
           </h3>
           <div className="grid lg:grid-cols-4 lg:gap-[80px] gap-[30px] grid-cols-1">
             <div className="text-center">
@@ -191,12 +181,11 @@ const Home = () => {
                   src="assets/cybersecurity.webp"
                   className="h-[60px] mb-1 inline-block mx-auto"
                 />
-                <p className="mb-4 text-[20px]">Account Security</p>
-                <p className="mb-4 text-[15px] flex text-center  justify-center">
-                  Enhance your smart contract’s security by integrating it with
-                  two-factor authorization. We enable your smart contracts with
-                  an added layer of security to prevent unauthorized
-                  transactions.
+                <p className="mb-4 text-[20px]">Secure Mobile Application</p>
+                <p className="mb-4 text-[15px] flex text-center justify-center">
+                  Simple, privacy-centered payments that make sense to everyday
+                  EV owners. Pay with QAI tokens or credit/debit cards with
+                  minimal data collection.
                 </p>
               </div>
             </div>
@@ -206,13 +195,10 @@ const Home = () => {
                   src="assets/smartcontract.webp"
                   className="h-[60px] mb-1 inline-block mx-auto"
                 />
-                <p className="mb-1 text-[20px]">
-                  Smart Contract Automation and Audit Results
-                </p>
+                <p className="mb-1 text-[20px]">End-to-End Encryption</p>
                 <p className="mb-2 text-[15px]">
-                  Streamline user experience and decrease developer downtime by
-                  automating your smart contracts with BSECAlink. Increase
-                  security and peace of mind through our on-chain audit results.
+                  Advanced encryption protocols ensure your transactions and
+                  data remain secure throughout the entire charging process.
                 </p>
               </div>
             </div>
@@ -222,34 +208,30 @@ const Home = () => {
                   src="assets/NFTs.webp"
                   className="h-[60px] mb-1 inline-block mx-auto"
                 />
-                <p className="mb-3 text-[20px]">NFTs, Gaming, and Randomness</p>
+                <p className="mb-3 text-[20px]">Real-Time Monitoring</p>
                 <p className="mb-4 text-[15px]">
-                  Establish trust in your metaverse or NFT gaming project
-                  through randomness. We make sure that your application remains
-                  truly random, secure, and tamper-proof.
+                  Advanced threat detection and real-time anomaly monitoring
+                  ensure your charging sessions remain secure and efficient.
                 </p>
               </div>
             </div>
-
             <div className="text-center">
               <div className="bg-[#313a82] scale-100 hover:scale-110 hover:bg-[#0E34F0] cursor-pointer ease-in duration-500 text-white px-6 pt-8 pb-3 cutom-shadow rounded-[20px] h-full md:w-full h-[22rem]">
                 <img
                   src="assets/graph.webp"
                   className="h-[60px] mb-1 inline-block mx-auto"
                 />
-                <p className="mb-4 text-[20px]">
-                  Graph Database Smart Contract Integration (Neo4J)
-                </p>
+                <p className="mb-4 text-[20px]">Compliance Management</p>
                 <p className="mb-4 text-[15px]">
-                  Take your efficiency to the next level by integrating a graph
-                  database into your smart contracts. BSECAlink is your link
-                  between enterprise-grade.
+                  Comprehensive compliance management system ensuring adherence
+                  to regulatory requirements while maintaining user privacy.
                 </p>
               </div>
             </div>
           </div>
         </div>
       </section>
+
       <section
         className="bg-[#040347] text-white pt-[90px] lg:pb-[70px]"
         id="value"
@@ -263,11 +245,10 @@ const Home = () => {
               <h1 className="lg:text-[2.5rem] lg:text-left text-center uppercase mb-[50px] font-bold text-[2rem] pr-7">
                 OUR VISION
               </h1>
-              <p className="lg:text-[18px] lg:text-left text-center  text-[16px] mt-4 lg:pr-7">
-                BSECA has a vision to simplify fintech, by allowing Crypto to
-                Fiat (BSA) transactions done instantaneously and with ease. We
-                envision to give bank like features to people without bank
-                access.
+              <p className="lg:text-[18px] lg:text-left text-center text-[16px] mt-4 lg:pr-7">
+                HCISS, LLC (BSECAENERGY) imagines a world where QAI powers a
+                safer, greener EV charging scene. By 2028, we want top-notch
+                security and sustainability in e-mobility.
               </p>
             </div>
             <div className="flex-1">
@@ -285,24 +266,26 @@ const Home = () => {
               <h1 className="lg:text-[2.5rem] lg:text-left text-center uppercase mb-[50px] font-bold text-[2rem] pr-7">
                 OUR MISSION
               </h1>
-              <p className="lg:text-[18px] lg:text-left text-center  text-[16px] mt-4 lg:pr-7">
-                BSECA mission is to offer simple, transparent & fast
-                transactions within an ecosystem that's created to give people
-                the power to move digital value through traditional or crypto
-                securely.
+              <p className="lg:text-[18px] lg:text-left text-center text-[16px] mt-4 lg:pr-7">
+                Our mission is to speed up EV adoption by delivering advanced
+                yet careful AI and Quantum solutions. We respect user data and
+                want to support people in many cultures who seek clean energy
+                and trust.
               </p>
             </div>
           </div>
           <div className="flex lg:flex-row items-center flex-col pt-[65px] lg:gap-[150px] gap-[50px]">
-            <div className="flex-1  ">
-              <h1 className="lg:text-[2.2rem]  lg:text-left text-center mb-[50px]  text-[2rem] pr-7">
-                Inclusivity
+            <div className="flex-1">
+              <h1 className="lg:text-[2.2rem] lg:text-left text-center mb-[50px] text-[2rem] pr-7">
+                Our Promise
               </h1>
               <p className="lg:text-[18px] lg:text-left text-center text-[16px] mt-4 lg:pr-7">
-                At BSECA we put inclusivity at the center of our purpose.
+                We promise simple, secure EV charging for all communities, with
+                a focus on privacy, real-world pilot tests, mindful tech
+                adoption, and a blend of AI and Quantum technology.
               </p>
             </div>
-            <div className="flex-1   ">
+            <div className="flex-1">
               <img src="assets/value.gif" className="w-full h-full" />
             </div>
           </div>
@@ -313,6 +296,13 @@ const Home = () => {
         id="tokenomics"
       >
         <h1 className="text-4xl font-bold text-center mb-5">Tokenomics</h1>
+        <div className="max-w-[900px] mx-auto p-5 text-center mb-10">
+          <p className="text-lg mb-4">Total Supply: 1,000,000,000 QAI TOKENS</p>
+          <p className="text-sm mb-2">Burn Rate: 2% Monthly transaction fees</p>
+          <p className="text-sm mb-2">
+            30% initial circulating supply in phase 1 for liquidity
+          </p>
+        </div>
         <TokenomicsChart />
       </section>
       <section id="roadmap">
@@ -320,8 +310,32 @@ const Home = () => {
       </section>
       <section className="bg-[#040347] text-white pt-[30px] pb-[50px]">
         <div className="max-w-[1700px] mx-auto p-5">
-          <h1 className="text-4xl font-bold text-center mb-20">See Us At</h1>
-          <div className="grid lg:grid-cols-6 md:grid-cols-3 gap-6 sm:grid-cols-3 ">
+          <h1 className="text-4xl font-bold text-center mb-10">
+            2025 Outcome Goals
+          </h1>
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-20">
+            <div className="text-center p-6 bg-[#313a82] rounded-lg">
+              <h3 className="text-xl font-bold mb-3">Global Reach</h3>
+              <p>Offer QAI-charging in 15+ regions</p>
+            </div>
+            <div className="text-center p-6 bg-[#313a82] rounded-lg">
+              <h3 className="text-xl font-bold mb-3">User Adoption</h3>
+              <p>Aim for 500,000 active users</p>
+            </div>
+            <div className="text-center p-6 bg-[#313a82] rounded-lg">
+              <h3 className="text-xl font-bold mb-3">Eco Efforts</h3>
+              <p>Handle around 1 million daily transactions without lag</p>
+            </div>
+            <div className="text-center p-6 bg-[#313a82] rounded-lg">
+              <h3 className="text-xl font-bold mb-3">Scalability</h3>
+              <p>Have at least 30% of stations using renewables</p>
+            </div>
+          </div>
+
+          <h1 className="text-4xl font-bold text-center mb-20">
+            Partners & Collaborators
+          </h1>
+          <div className="grid lg:grid-cols-6 md:grid-cols-3 gap-6 sm:grid-cols-3">
             <div>
               <a href="#">
                 <img src="assets/slide_1.png" className="w-[150px] mx-auto" />
@@ -353,6 +367,14 @@ const Home = () => {
               </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-[#040347] text-white py-[50px]">
+        <div className="max-w-[900px] mx-auto p-5 text-center">
+          <h1 className="text-4xl font-bold mb-8">Contact Us</h1>
+          <p className="text-xl mb-4">Office: Chicago, IL, US</p>
+          <p className="text-xl">Email: info@hciss.io</p>
         </div>
       </section>
     </>
