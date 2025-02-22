@@ -14,7 +14,7 @@ import {
 
 const Footer = () => {
   const handleDownload = () => {
-    const fileUrl = "/assets/whitepaper/QAITokenEVCI_Use Case.pdf";
+    const fileUrl = "/assets/whitepaper/QAITokenEVCI_Use_Case.pdf";
 
     // Create a temporary link element
     const link = document.createElement("a");
