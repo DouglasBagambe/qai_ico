@@ -368,7 +368,9 @@ const Home = () => {
         <h1 className="text-4xl font-bold text-center mb-20">Tokenomics</h1>
         <TokenomicsChart />
       </section>
-      <RoadmapSection />
+      <section id="roadmap">
+        <RoadmapSection />
+      </section>
       <section className="bg-[#040347] text-white pt-[30px] pb-[50px]">
         <div className="max-w-[1700px] mx-auto p-5">
           <h1 className="text-4xl font-bold text-center mb-20">See Us At</h1>
