@@ -23,7 +23,7 @@ const Home = () => {
   const [number, setNumber] = useState<number | null>(null);
 
   const handlePDFView = () => {
-    const pdfPath = `${window.location.origin}/assets/whitepaper/QAITokenEVCI_V3.pdf`;
+    const pdfPath = `${window.location.origin}/assets/whitepaper/QAITokenEVCI_Use_Case.pdf`;
     const newWindow = window.open("", "_blank");
     if (newWindow) {
       newWindow.document.write(`
