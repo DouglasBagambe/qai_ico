@@ -8,6 +8,7 @@ import React, { useState } from "react";
 // import Team from "@/components/Team";
 
 import RoadmapSection from "../RoadmapSection";
+import TokenomicsChart from "../TokenomicsChart";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -361,23 +362,8 @@ const Home = () => {
         className="bg-[#040347] text-white pt-[6.9rem] lg:pb-[50px]"
         id="tokenomics"
       >
-        <h1 className="flex justify-center m-auto text-3xl font-base mb-5 ">
-          Tokenomics
-        </h1>
-        <div className="flex justify-center">
-          <div className="w-[80rem] flex justify-center">
-            {/* <img
-              src={process.env.PUBLIC_URL + "assets/chart.svg"}
-              width="100%"
-            ></img> */}
-            <img
-              className="w-full h-[auto]"
-              src="/assets/chart.svg"
-              width="100%"
-              alt="Banner"
-            />
-          </div>
-        </div>
+        <h1 className="text-4xl font-bold text-center mb-20">Tokenomics</h1>
+        <TokenomicsChart />
       </section>
       <RoadmapSection />
       <section className="bg-[#040347] text-white pt-[30px] pb-[50px]">

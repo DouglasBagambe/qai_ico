@@ -3,6 +3,14 @@
 "use client";
 
 import React from "react";
+import {
+  Instagram,
+  Twitter,
+  Facebook,
+  MessageCircle,
+  Send,
+  Linkedin,
+} from "lucide-react";
 
 const Footer = () => {
   const handleDownload = () => {
@@ -115,35 +123,35 @@ const Footer = () => {
             <h2 className="title-font font-medium text-white tracking-widest text-sm mb-5">
               Follow Us
             </h2>
-            <div className="grid  xl:grid-cols-6  lg:grid-cols-5 md:grid-cols-5 grid-cols-4 mt-3 gap-2">
-              <a href="" className="mb-2 mx-auto">
-                <div className="border border-[#952dc0] rounded-full w-[45px] h-[45px] flex items-center justify-center p-5">
-                  <i className="fab fa-instagram text-white"></i>
+            <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-5 grid-cols-4 mt-3 gap-2">
+              <a href="#" className="mb-2 mx-auto">
+                <div className="border border-[#952dc0] hover:bg-[#952dc0] transition-colors duration-300 rounded-full w-[45px] h-[45px] flex items-center justify-center">
+                  <Instagram className="text-[#952dc0] hover:text-white w-5 h-5" />
                 </div>
               </a>
-              <a href="" className="mb-2 mx-auto">
-                <div className="border border-[#952dc0] rounded-full w-[45px] h-[45px] flex items-center justify-center p-5">
-                  <i className="fab fa-twitter"></i>
+              <a href="#" className="mb-2 mx-auto">
+                <div className="border border-[#952dc0] hover:bg-[#952dc0] transition-colors duration-300 rounded-full w-[45px] h-[45px] flex items-center justify-center">
+                  <Twitter className="text-[#952dc0] hover:text-white w-5 h-5" />
                 </div>
               </a>
-              <a href="" className="mb-2 mx-auto">
-                <div className="border border-[#952dc0] rounded-full w-[45px] h-[45px] flex items-center justify-center p-5">
-                  <i className="fab fa-facebook"></i>
+              <a href="#" className="mb-2 mx-auto">
+                <div className="border border-[#952dc0] hover:bg-[#952dc0] transition-colors duration-300 rounded-full w-[45px] h-[45px] flex items-center justify-center">
+                  <Facebook className="text-[#952dc0] hover:text-white w-5 h-5" />
                 </div>
               </a>
-              <a href="" className="mb-2 mx-auto">
-                <div className="border border-[#952dc0] rounded-full w-[45px] h-[45px] flex items-center justify-center p-5">
-                  <i className="fab fa-discord"></i>
+              <a href="#" className="mb-2 mx-auto">
+                <div className="border border-[#952dc0] hover:bg-[#952dc0] transition-colors duration-300 rounded-full w-[45px] h-[45px] flex items-center justify-center">
+                  <MessageCircle className="text-[#952dc0] hover:text-white w-5 h-5" />
                 </div>
               </a>
-              <a href="" className="mb-2 mx-auto">
-                <div className="border border-[#952dc0] rounded-full w-[45px] h-[45px] flex items-center justify-center p-5">
-                  <i className="fab fa-telegram"></i>
+              <a href="#" className="mb-2 mx-auto">
+                <div className="border border-[#952dc0] hover:bg-[#952dc0] transition-colors duration-300 rounded-full w-[45px] h-[45px] flex items-center justify-center">
+                  <Send className="text-[#952dc0] hover:text-white w-5 h-5" />
                 </div>
               </a>
-              <a href="" className="mb-2 mx-auto">
-                <div className="border border-[#952dc0] rounded-full w-[45px] h-[45px] flex items-center justify-center p5">
-                  <i className="fab fa-linkedin"></i>
+              <a href="#" className="mb-2 mx-auto">
+                <div className="border border-[#952dc0] hover:bg-[#952dc0] transition-colors duration-300 rounded-full w-[45px] h-[45px] flex items-center justify-center">
+                  <Linkedin className="text-[#952dc0] hover:text-white w-5 h-5" />
                 </div>
               </a>
             </div>
