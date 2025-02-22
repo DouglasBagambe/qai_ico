@@ -5,5 +5,8 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
-
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
+};
