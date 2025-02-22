@@ -65,7 +65,7 @@ const TokenomicsChart = () => {
       <div className="p-6">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Chart Section */}
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-1/2 items-center">
             <div className="relative">
               <svg viewBox="-120 -120 240 240" className="w-full">
                 {segments.map((segment, index) => (
@@ -134,14 +134,16 @@ const TokenomicsChart = () => {
                 <div
                   key={item.name}
                   className={`flex items-center justify-between p-2 rounded transition-all duration-300 ${
-                    activeSegment === index ? "text-black" : "text-white"
+                    activeSegment === index ? "bg-opacity-20 bg-white" : ""
                   }`}
                   onMouseEnter={() => setActiveSegment(index)}
                   onMouseLeave={() => setActiveSegment(null)}
                 >
                   <div className="flex items-center space-x-3">
                     <div
-                      className="w-4 h-4 rounded"
+                      className={`w-4 h-4 rounded transition-transform duration-300 ${
+                        activeSegment === index ? "scale-125" : ""
+                      }`}
                       style={{ backgroundColor: item.color }}
                     />
                     <span className="font-medium text-white">{item.name}</span>
