@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { Card, CardContent } from "./ui/card";
 
 const TokenomicsChart = () => {
   const [activeSegment, setActiveSegment] = useState<number | null>(null);
