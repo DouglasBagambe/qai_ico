@@ -3,7 +3,7 @@ import { Shield } from "lucide-react";
 
 const RoadmapPath = () => (
   <svg
-    className="absolute left-1/2 -translate-x-1/2 h-full w-[600px] hidden md:block"
+    className="absolute left-1/2 -translate-x-1/2 h-full w-[500px] hidden md:block"
     viewBox="0 0 200 800"
     preserveAspectRatio="none"
   >
@@ -135,33 +135,33 @@ const RoadmapItem: React.FC<RoadmapItemProps> = ({
 const RoadmapSection = () => {
   const roadmapItems = [
     {
-      number: "01",
-      title: "Phase 1: Infrastructure Development",
+      number: "Q1",
+      title: "Foundation and Pilot",
       description:
-        "Deploying robust ERC-20 token contracts with advanced security features. Implementing cutting-edge Proof of Authority (PoA) and Proof of Identity (PoI) consensus mechanisms to ensure network integrity and trustless operations.",
+        "Infrastructure Setup and Smart Contract Basics implementation. Launching small pilot program while focusing on stakeholder onboarding to establish a strong foundation for the network.",
     },
     {
-      number: "02",
-      title: "Phase 2: Quantum & AI Integration",
+      number: "Q2",
+      title: "Careful Expansion",
       description:
-        "Launching the revolutionary Quantum AI Virtual Machine (QAIVM) to power next-generation blockchain operations. Integrating sophisticated lattice-based cryptography to establish quantum-resistant security protocols.",
+        "Scaling the pilot program while implementing energy trading trials. Developing interoperability features and introducing community incentives to drive adoption and engagement.",
     },
     {
-      number: "03",
-      title: "Phase 3: Ecosystem Expansion",
+      number: "Q3",
+      title: "Deeper Security and Optimization",
       description:
-        "Developing seamless cross-chain bridges to enable interoperability across multiple blockchain networks. Launching specialized industry applications focused on revolutionizing energy sector, financial services, and supply chain management.",
+        "Implementing AI and Quantum Testing phases while enhancing privacy features. Introducing Layer-2 solutions and developing comprehensive data insights for network optimization.",
     },
     {
-      number: "04",
-      title: "Phase 4: Future Innovation",
+      number: "Q4",
+      title: "Wider Adoption",
       description:
-        "Continuing to push the boundaries of blockchain technology with ongoing research and development. Expanding our ecosystem through strategic partnerships and community-driven initiatives.",
+        "Rolling out full-scale gradual deployment and establishing key collaborations. Focusing on user experience improvements and conducting thorough network assessment.",
     },
   ];
 
   return (
-    <section className="bg-[#040347] min-h-screen text-white pt-24 pb-12 px-4 overflow-hidden">
+    <section className="bg-[#040347] min-h-screen text-white pt-20 pb-12 px-4 overflow-hidden">
       <style>
         {`
           @keyframes fadeIn {
@@ -198,9 +198,9 @@ const RoadmapSection = () => {
         `}
       </style>
 
-      <h1 className="text-4xl font-bold text-center mb-20">Roadmap</h1>
+      <h1 className="text-4xl font-bold text-center mb-16">2025 Roadmap</h1>
 
-      <div className="max-w-6xl mx-auto relative">
+      <div className="max-w-5xl mx-auto relative">
         <RoadmapPath />
 
         <div className="space-y-16 md:space-y-32 relative">
