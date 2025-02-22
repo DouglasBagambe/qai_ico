@@ -296,13 +296,6 @@ const Home = () => {
         id="tokenomics"
       >
         <h1 className="text-4xl font-bold text-center mb-5">Tokenomics</h1>
-        <div className="max-w-[900px] mx-auto p-5 text-center mb-10">
-          <p className="text-lg mb-4">Total Supply: 1,000,000,000 QAI TOKENS</p>
-          <p className="text-sm mb-2">Burn Rate: 2% Monthly transaction fees</p>
-          <p className="text-sm mb-2">
-            30% initial circulating supply in phase 1 for liquidity
-          </p>
-        </div>
         <TokenomicsChart />
       </section>
       <section id="roadmap">
