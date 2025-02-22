@@ -138,7 +138,10 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="bg-[#040347] text-white lg:py-[50px] pb-[50px]">
+      <section
+        className="bg-[#040347] text-white lg:py-[50px] pb-[50px]"
+        id="buy"
+      >
         <div className="max-w-[1200px] mx-auto p-5">
           <div className="flex lg:flex-row flex-col lg:gap-[150px] gap-[50px]">
             <div className="flex-1 flex justify-center items-center ">
@@ -368,9 +371,7 @@ const Home = () => {
       <RoadmapSection />
       <section className="bg-[#040347] text-white pt-[30px] pb-[50px]">
         <div className="max-w-[1700px] mx-auto p-5">
-          <h4 className="text-white lg:text-[35px] text-[22px] text-center lg:mb-[120px] mb-[60px] mb-[30px]">
-            See Us At
-          </h4>
+          <h1 className="text-4xl font-bold text-center mb-20">See Us At</h1>
           <div className="grid lg:grid-cols-6 md:grid-cols-3 gap-6 sm:grid-cols-3 ">
             <div>
               <a href="#">
