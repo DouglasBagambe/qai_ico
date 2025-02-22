@@ -128,7 +128,7 @@ const TokenomicsChart = () => {
           </div>
 
           {/* Legend and Info Section */}
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-1/2 mt-12">
             <div className="space-y-3">
               {tokenomicsData.map((item, index) => (
                 <div

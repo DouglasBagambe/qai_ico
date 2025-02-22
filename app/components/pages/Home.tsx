@@ -365,7 +365,7 @@ const Home = () => {
         className="bg-[#040347] text-white pt-[6.9rem] lg:pb-[50px]"
         id="tokenomics"
       >
-        <h1 className="text-4xl font-bold text-center mb-20">Tokenomics</h1>
+        <h1 className="text-4xl font-bold text-center mb-5">Tokenomics</h1>
         <TokenomicsChart />
       </section>
       <section id="roadmap">
