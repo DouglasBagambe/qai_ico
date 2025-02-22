@@ -369,14 +369,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      <section className="bg-[#040347] text-white py-[50px]">
-        <div className="max-w-[900px] mx-auto p-5 text-center">
-          <h1 className="text-4xl font-bold mb-8">Contact Us</h1>
-          <p className="text-xl mb-4">Office: Chicago, IL, US</p>
-          <p className="text-xl">Email: info@hciss.io</p>
-        </div>
-      </section>
     </>
   );
 };
