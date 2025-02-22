@@ -151,54 +151,6 @@ const Home = () => {
               />
             </div>
             <div className="flex-1">
-              {/* <div className="">
-                                <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                                    <div className="md:w-[30rem] w-full border rounded-lg shadow-lg relative flex flex-col w-full bg-[#000] outline-none focus:outline-none popmodel border-2 border-[#5CAAFF]">
-                                        <div className="flex items-start justify-between p-5 border-b border-solid border-[#5CAAFF] rounded-t bg-[#040347]">
-                                            <h3 className="text-3xl font-semibold text-white">
-                                                Buy Token
-                                            </h3>
-                                            <button
-                                                className="bg-transparent border-0 text-black float-right"
-                                                onClick={() => setShowModal(false)}
-                                            >
-                                                <span className="text-black opacity-7 h-6 w-6 text-xl block  py-0 rounded-full">
-                                                    x
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div className="relative p-6 flex-auto">
-                                            <div className=" shadow-md rounded px-8 pt-6 pb-8 w-full">
-                                                <label className="block text-wh text-sm font-bold mb-1 text-left mb-5">
-                                                    Amount
-                                                </label>
-                                                <div className="flex gap-2 items-center ">
-                                                    <input
-                                                        type="number"
-                                                        value={number}
-                                                        onChange={(e) => setNumber(e.target.value)}
-                                                        disabled={isApprove}
-                                                        className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
-                                                    />
-                                                    <span className="font-bold ">USDT</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-                                            <button
-                                                className="text-white border-2 border-[#5CAAFF]  font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                                                type="button"
-
-                                            onClick={isApprove ? Buy : Approve}
-                                            >
-                                                Approve
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
-
               <div>
                 <h1 className="lg:text-[2.5rem] font-bold text-[2rem] pr-7">
                   Why Choose HCISS?
@@ -356,11 +308,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* <section class="bg-[#040347] text-white pt-[30px] lg:pb-[50px]" id="team">
-                <div className='max-w-[900px] mx-auto p-5'>
-                    <Team />
-                </div>
-            </section> */}
       <section
         className="bg-[#040347] text-white pt-[6.9rem] lg:pb-[50px]"
         id="tokenomics"
@@ -408,12 +355,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* <section className="bg-[#040347] text-white md:pt-[30px] pt-0 md:pb-[50px] pb-[20px]">
-        <div className=''>
-            <img src="assets/phase.svg" class="w-full h-auto lg:block hidden">
-            <img src="assets/mobile-phase.svg" class="w-full h-auto lg:hidden block">
-        </div>
-    </section> */}
     </>
   );
 };
