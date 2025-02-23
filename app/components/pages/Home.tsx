@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 "use client";
@@ -57,21 +56,39 @@ const Home = () => {
             <div className="flex-1">
               <div>
                 <h1 className="lg:text-[2.5rem] font-bold text-[1.8rem] pr-7">
-                  Simplifying EV Charging with Secure Blockchain Technology
+                  Revolutionizing Blockchain Security with Quantum-Resistant AI
                 </h1>
                 <p className="lg:text-[18px] text-[16px] mt-7 pr-7">
-                  QAI Token offers a simpler, cost-saving, and privacy-friendly
-                  path for EV charging. Using decentralized blockchain network
-                  and AI tools with quantum-resistant security, we're making EV
-                  charging more accessible and secure than ever before.
+                  The Quantum AI Token (QAI) merges quantum computing and
+                  artificial intelligence to revolutionize industries like
+                  finance, renewable energy, supply chain logistics, and
+                  cybersecurity. Built on a quantum-resistant blockchain with an
+                  AI-driven consensus mechanism, QAI delivers unmatched
+                  efficiency, security, and scalability.
                 </p>
-                <div className="flex mt-3 md:flex-row flex-col lg:gap-2 gap-5 mt-[20px]">
-                  <button
-                    onClick={handlePDFView}
-                    className="px-6 button-g py-2 rounded-[15px] min-w-[300px] text-center bg-gradient-to-r from-[#a42e9a] to-[#5951f6] hover:opacity-90 transition-opacity"
-                  >
-                    Whitepaper
-                  </button>
+                <div className="flex flex-col gap-4 mt-8">
+                  <div className="flex flex-col gap-2">
+                    <p className="text-[16px] flex items-center">
+                      <span className="text-blue-400 mr-2">🔹</span>
+                      Early Investors Get Exclusive Bonuses
+                    </p>
+                    <p className="text-[16px] flex items-center">
+                      <span className="text-blue-400 mr-2">🔹</span>
+                      AI & Quantum Security-Powered Transactions
+                    </p>
+                    <p className="text-[16px] flex items-center">
+                      <span className="text-blue-400 mr-2">🔹</span>
+                      Limited Supply with Deflationary Tokenomics
+                    </p>
+                  </div>
+                  <div className="flex md:flex-row flex-col lg:gap-2 gap-5 mt-[20px]">
+                    <button
+                      onClick={handlePDFView}
+                      className="px-6 button-g py-2 rounded-[15px] min-w-[300px] text-center bg-gradient-to-r from-[#a42e9a] to-[#5951f6] hover:opacity-90 transition-opacity"
+                    >
+                      Whitepaper
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -80,7 +97,7 @@ const Home = () => {
                 className="w-full h-[auto]"
                 src="/assets/banner.gif"
                 width="100%"
-                alt="Banner"
+                alt="QAI Token - Quantum AI Revolution"
               />
             </div>
           </div>
