@@ -65,7 +65,7 @@ const Home = () => {
                   finance, renewable energy, supply chain logistics, and
                   cybersecurity. Built on a quantum-resistant blockchain with an
                   AI-driven consensus mechanism, QAI delivers unmatched
-                  efficiency, security, and scalability. This isn't just a
+                  efficiency, security, and scalability.<br>This isn't just a
                   cryptocurrency—it's the foundation of a decentralized quantum
                   AI revolution. QAI is poised to become the leading token for
                   the quantum AI era. Don't just witness the future—be a part of
