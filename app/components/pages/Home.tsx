@@ -60,15 +60,15 @@ const Home = () => {
                   Revolutionizing Blockchain Security with Quantum-Resistant AI
                 </h1>
                 <p className="lg:text-[18px] text-[16px] mt-7 pr-7">
-                  The Quantum AI Token (QAI) merges quantum computing and
-                  artificial intelligence to revolutionize industries like
+                  The QuantumSEC Analytics Token (QSE) merges quantum computing
+                  and artificial intelligence to revolutionize industries like
                   finance, renewable energy, supply chain logistics, and
                   cybersecurity. Built on a quantum-resistant blockchain with an
-                  AI-driven consensus mechanism, QAI delivers unmatched
+                  AI-driven consensus mechanism, QSE delivers unmatched
                   efficiency, security, and scalability. <br />
                   <br />
                   This isn't just a cryptocurrency—it's the foundation of a
-                  decentralized quantum AI revolution. QAI is poised to become
+                  decentralized quantum AI revolution. QSE is poised to become
                   the leading token for the quantum AI era. Don't just witness
                   the future—be a part of it.
                 </p>
@@ -103,7 +103,7 @@ const Home = () => {
                 className="w-full h-[auto]"
                 src="/assets/banner.gif"
                 width="100%"
-                alt="QAI Token - Quantum AI Revolution"
+                alt="QSE Token - Quantum AI Revolution"
               />
             </div>
           </div>
@@ -170,10 +170,10 @@ const Home = () => {
             <div className="flex-1">
               <div>
                 <h1 className="lg:text-[2.5rem] font-bold text-[2rem] pr-7">
-                  Why Choose QAI Token?
+                  Why Choose QSE Token?
                 </h1>
                 <p className="lg:text-[18px] text-[16px] mt-4 pr-7">
-                  QAI Token combines blockchain security, pilot AI, and quantum
+                  QSE Token combines blockchain security, pilot AI, and quantum
                   technology to create a safer, more efficient EV charging
                   ecosystem. We focus on privacy-first payments, minimal data
                   collection, and quantum-resistant security to ensure your
@@ -207,7 +207,7 @@ const Home = () => {
                 <p className="mb-4 text-[20px]">Secure Mobile Application</p>
                 <p className="mb-4 text-[15px] flex text-center justify-center">
                   Simple, privacy-centered payments that make sense to everyday
-                  EV owners. Pay with QAI tokens or credit/debit cards with
+                  EV owners. Pay with QSE tokens or credit/debit cards with
                   minimal data collection.
                 </p>
               </div>
@@ -269,7 +269,7 @@ const Home = () => {
                 OUR VISION
               </h1>
               <p className="lg:text-[18px] lg:text-left text-center text-[16px] mt-4 lg:pr-7">
-                HCISS, LLC (QSEENERGY) imagines a world where QAI powers a
+                HCISS, LLC (BSECAENERGY) imagines a world where QAI powers a
                 safer, greener EV charging scene. By 2028, we want top-notch
                 security and sustainability in e-mobility.
               </p>
@@ -332,7 +332,7 @@ const Home = () => {
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-20">
             <div className="text-center p-6 bg-[#313a82] rounded-lg">
               <h3 className="text-xl font-bold mb-3">Global Reach</h3>
-              <p>Offer QAI-charging in 15+ regions</p>
+              <p>Offer QSE-charging in 15+ regions</p>
             </div>
             <div className="text-center p-6 bg-[#313a82] rounded-lg">
               <h3 className="text-xl font-bold mb-3">User Adoption</h3>

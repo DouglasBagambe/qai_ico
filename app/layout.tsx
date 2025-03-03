@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "QSE",
-  description: "QAI ICO Platform",
+  description: "QSE ICO Platform",
 };
 
 export default function RootLayout({

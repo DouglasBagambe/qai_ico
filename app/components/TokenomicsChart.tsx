@@ -121,7 +121,7 @@ const TokenomicsChart = () => {
                   fontSize="8"
                   className="font-bold"
                 >
-                  QAI TOKENS
+                  QSE TOKENS
                 </text>
               </svg>
             </div>
