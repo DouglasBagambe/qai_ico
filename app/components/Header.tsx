@@ -23,7 +23,9 @@ const Header = () => {
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <a href="/" className="flex items-center">
               <div className="spin"></div>
-              <span className="text-white text-xl pl-3">QSE</span>
+              <span className="text-white text-3xl font-bold pl-3 tracking-wide">
+                QuantumSEC Analytics
+              </span>
             </a>
             <div className="md:hidden">
               <button
