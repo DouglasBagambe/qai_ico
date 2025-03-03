@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "BSECA",
+  title: "QSE",
   description: "QAI ICO Platform",
 };
 

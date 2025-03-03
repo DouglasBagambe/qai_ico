@@ -65,7 +65,8 @@ const Home = () => {
                   finance, renewable energy, supply chain logistics, and
                   cybersecurity. Built on a quantum-resistant blockchain with an
                   AI-driven consensus mechanism, QAI delivers unmatched
-                  efficiency, security, and scalability. <br /><br />
+                  efficiency, security, and scalability. <br />
+                  <br />
                   This isn't just a cryptocurrency—it's the foundation of a
                   decentralized quantum AI revolution. QAI is poised to become
                   the leading token for the quantum AI era. Don't just witness
@@ -268,7 +269,7 @@ const Home = () => {
                 OUR VISION
               </h1>
               <p className="lg:text-[18px] lg:text-left text-center text-[16px] mt-4 lg:pr-7">
-                HCISS, LLC (BSECAENERGY) imagines a world where QAI powers a
+                HCISS, LLC (QSEENERGY) imagines a world where QAI powers a
                 safer, greener EV charging scene. By 2028, we want top-notch
                 security and sustainability in e-mobility.
               </p>

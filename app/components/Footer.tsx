@@ -33,7 +33,7 @@ const Footer = () => {
             <a href="index.html">
               <div className="spin"></div>
               <span className="flex m-auto text-center mt-2 inline-block text-xl ml-5 md:ml-[1.5rem]">
-                BSECA
+                QSE
               </span>
             </a>
           </div>
@@ -166,7 +166,7 @@ const Footer = () => {
           </div>
         </div>
         <p className="text-center text-white pt-[50px]">
-          ©2025 BSECA. All rights reserved
+          ©2025 QSE. All rights reserved
         </p>
       </div>
     </footer>

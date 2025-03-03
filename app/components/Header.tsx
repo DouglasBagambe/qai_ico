@@ -71,7 +71,7 @@ const Header = () => {
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <a href="/" className="flex items-center">
               <div className="spin"></div>
-              <span className="text-white text-xl pl-3">BSECA</span>
+              <span className="text-white text-xl pl-3">QSE</span>
             </a>
             <div className="md:hidden">
               <button
