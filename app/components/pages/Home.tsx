@@ -16,9 +16,22 @@ import {
   faCreditCard,
 } from "@fortawesome/free-solid-svg-icons";
 
+import TokenPurchaseModal from "../TokenPurchaseModal";
+
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const [number, setNumber] = useState<number | null>(null);
+
+  const [navbar, setNavbar] = useState(false);
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+
+  const openPurchaseModal = () => {
+    setShowPurchaseModal(true);
+  };
+
+  const closePurchaseModal = () => {
+    setShowPurchaseModal(false);
+  };
 
   const handlePDFView = () => {
     const pdfPath = `${window.location.origin}/assets/whitepaper/QAITokenEVCI_Use_Case.pdf`;
@@ -179,13 +192,12 @@ const Home = () => {
                   collection, and quantum-resistant security to ensure your
                   transactions are safe and private.
                 </p>
-                <a
-                  href=""
-                  onClick={() => setShowModal(false)}
+                <button
+                  onClick={openPurchaseModal}
                   className="buytoken px-6 py-2 text-white rounded-[15px] lg:min-w-[300px] min-w-[250px] text-center py-3 inline-block mt-[30px] px-[40px] bg-gradient-to-r from-[#a42e9a] to-[#5951f6]"
                 >
                   Buy Token
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -385,6 +397,13 @@ const Home = () => {
           </div>
         </div>
       </section>
+      {/* Token Purchase Modal */}
+      {showPurchaseModal && (
+        <TokenPurchaseModal
+          isOpen={showPurchaseModal}
+          onClose={closePurchaseModal}
+        />
+      )}
     </>
   );
 };

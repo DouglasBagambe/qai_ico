@@ -1,67 +1,19 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-html-link-for-pages */
 "use client";
 
-import React, { useState, useEffect } from "react";
-
-declare global {
-  interface Window {
-    ethereum?: any;
-  }
-}
+import React, { useState } from "react";
+import TokenPurchaseModal from "./TokenPurchaseModal";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
-  const [walletConnected, setWalletConnected] = useState(false);
-  const [walletAddress, setWalletAddress] = useState("");
-  const [isConnecting, setIsConnecting] = useState(false);
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
 
-  const connectWallet = async () => {
-    try {
-      console.log("Starting connection...");
-      setIsConnecting(true);
-
-      if (!window.ethereum) {
-        alert("Please install MetaMask!");
-        return;
-      }
-
-      // Basic connection request
-      const accounts = await window.ethereum
-        .request({
-          method: "eth_requestAccounts",
-          params: [],
-        })
-        .catch((error: any) => {
-          console.error("User rejected request:", error);
-          throw error;
-        });
-
-      console.log("Accounts received:", accounts);
-
-      if (accounts.length > 0) {
-        setWalletAddress(accounts[0]);
-        setWalletConnected(true);
-        console.log("Wallet connected:", accounts[0]);
-      }
-    } catch (error: any) {
-      console.error("Connection failed:", error);
-      alert(error.message || "Failed to connect wallet");
-    } finally {
-      setIsConnecting(false);
-    }
+  const openPurchaseModal = () => {
+    setShowPurchaseModal(true);
   };
 
-  const disconnectWallet = () => {
-    setWalletConnected(false);
-    setWalletAddress("");
-  };
-
-  const formatAddress = (address: string) => {
-    return `${address.substring(0, 6)}...${address.substring(
-      address.length - 4
-    )}`;
+  const closePurchaseModal = () => {
+    setShowPurchaseModal(false);
   };
 
   return (
@@ -144,36 +96,25 @@ const Header = () => {
                 </a>
               </li>
               <li>
-                {walletConnected ? (
-                  <div className="flex flex-col md:flex-row items-center">
-                    <div className="px-4 py-2 lg:text-[16px] text-[#00FF00] border-[#008000] border rounded-full flex items-center">
-                      <span className="mr-2 md:block hidden">
-                        {formatAddress(walletAddress)}
-                      </span>
-                    </div>
-                    <button
-                      onClick={disconnectWallet}
-                      className="text-red-400 text-sm hover:text-red-600 mt-2 md:mt-0 md:ml-2"
-                    >
-                      Disconnect
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    onClick={connectWallet}
-                    disabled={isConnecting}
-                    className={`block py-2 lg:text-[16px] px-4 text-[#008000] border-[#008000] border rounded-full hover:bg-[#008000] hover:bg-opacity-10 transition duration-300 ${
-                      isConnecting ? "opacity-70" : ""
-                    }`}
-                  >
-                    {isConnecting ? "Connecting..." : "Connect Wallet"}
-                  </button>
-                )}
+                <button
+                  onClick={openPurchaseModal}
+                  className="block py-2 lg:text-[16px] px-6 text-white bg-gradient-to-r from-[#a42e9a] to-[#5951f6] border rounded-full hover:opacity-90 transition duration-300 font-medium"
+                >
+                  Buy QSE Token
+                </button>
               </li>
             </ul>
           </div>
         </div>
       </div>
+
+      {/* Token Purchase Modal */}
+      {showPurchaseModal && (
+        <TokenPurchaseModal
+          isOpen={showPurchaseModal}
+          onClose={closePurchaseModal}
+        />
+      )}
     </nav>
   );
 };
