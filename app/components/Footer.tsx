@@ -14,12 +14,12 @@ import {
 
 const Footer = () => {
   const handleDownload = () => {
-    const fileUrl = "/assets/whitepaper/QAITokenEVCI_Use_Case.pdf";
+    const fileUrl = "/assets/whitepaper/QSE_TokenEVCI_Use Case.pdf";
 
     // Create a temporary link element
     const link = document.createElement("a");
     link.href = fileUrl;
-    link.setAttribute("download", "QAITokenEVCI_Use_Case.pdf"); // Set the download attribute
+    link.setAttribute("download", "QSE_TokenEVCI_Use Case.pdf"); // Set the download attribute
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

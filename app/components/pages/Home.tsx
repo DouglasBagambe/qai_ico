@@ -34,13 +34,13 @@ const Home = () => {
   };
 
   const handlePDFView = () => {
-    const pdfPath = `${window.location.origin}/assets/whitepaper/QAITokenEVCI_Use_Case.pdf`;
+    const pdfPath = `${window.location.origin}/assets/whitepaper/QSE_TokenEVCI_Use Case.pdf`;
     const newWindow = window.open("", "_blank");
     if (newWindow) {
       newWindow.document.write(`
       <html>
         <head>
-          <title>QAI-Token EVCI Whitepaper</title>
+          <title>QSE-Token EVCI Whitepaper</title>
           <style>
             body, html {
               margin: 0;
@@ -281,7 +281,7 @@ const Home = () => {
                 OUR VISION
               </h1>
               <p className="lg:text-[18px] lg:text-left text-center text-[16px] mt-4 lg:pr-7">
-                HCISS, LLC (BSECAENERGY) imagines a world where QAI powers a
+                HCISS, LLC (BSECAENERGY) imagines a world where QSE powers a
                 safer, greener EV charging scene. By 2028, we want top-notch
                 security and sustainability in e-mobility.
               </p>
