@@ -24,7 +24,7 @@ const Header = () => {
             <a href="/" className="flex items-center">
               <div className="spin"></div>
               <span className="text-white text-3xl font-bold pl-3 tracking-wide">
-                QuantumSEC Analytics
+                QuantumSEC
               </span>
             </a>
             <div className="md:hidden">

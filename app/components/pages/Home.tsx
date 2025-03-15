@@ -73,8 +73,8 @@ const Home = () => {
                   Revolutionizing Blockchain Security with Quantum-Resistant AI
                 </h1>
                 <p className="lg:text-[18px] text-[16px] mt-7 pr-7">
-                  The QuantumSEC Analytics (QSE) Token merges quantum computing
-                  and artificial intelligence to revolutionize industries like
+                  The QuantumSEC (QSE) Token merges quantum computing and
+                  artificial intelligence to revolutionize industries like
                   finance, renewable energy, supply chain logistics, and
                   cybersecurity. Built on a quantum-resistant blockchain with an
                   AI-driven consensus mechanism, QSE delivers unmatched
