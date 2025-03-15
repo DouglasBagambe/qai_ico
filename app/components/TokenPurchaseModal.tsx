@@ -1,7 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useWeb3 } from "./Web3Provider";
 
 interface TokenPurchaseModalProps {
   isOpen: boolean;
@@ -13,22 +14,27 @@ const TokenPurchaseModal: React.FC<TokenPurchaseModalProps> = ({
   onClose,
 }) => {
   const [ethAmount, setEthAmount] = useState<string>("");
-  const [qseAmount, setQaiAmount] = useState<string>("");
+  const [qseAmount, setQseAmount] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [purchaseCompleted, setPurchaseCompleted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [receiveAmount, setReceiveAmount] = useState<string>("");
   const [burnAmount, setBurnAmount] = useState<string>("");
+  const [txHash, setTxHash] = useState<string>("");
 
-  // Constants from the smart contract
-  const exchangeRate = 5000; // Example: 1 ETH = 5000 QSE tokens
-  const burnRate = 2; // 2% burn rate per transaction
-  const maxSupply = 1000000000; // 1 billion max supply
-  const remainingSupply = 300000000; // 300 million for ICO phase
+  // Web3 context
+  const {
+    connectWallet,
+    buyTokens,
+    isConnected,
+    isConnecting,
+    account,
+    tokenRate,
+    burnRate,
+  } = useWeb3();
 
   useEffect(() => {
-    // Reset error message when form changes
     setErrorMessage("");
   }, [ethAmount, qseAmount]);
 
@@ -36,31 +42,25 @@ const TokenPurchaseModal: React.FC<TokenPurchaseModalProps> = ({
     const value = e.target.value;
     setEthAmount(value);
 
-    // Calculate QSE tokens based on ETH amount
     if (value && !isNaN(parseFloat(value))) {
-      const tokens = parseFloat(value) * exchangeRate;
-      setQaiAmount(tokens.toString());
-
-      // Calculate post-burn amount
+      const tokens = parseFloat(value) * tokenRate;
+      setQseAmount(tokens.toString());
       calculateTokensAfterBurn(tokens);
     } else {
-      setQaiAmount("");
+      setQseAmount("");
       setReceiveAmount("");
       setBurnAmount("");
     }
   };
 
-  const handleQaiInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleQseInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setQaiAmount(value);
+    setQseAmount(value);
 
-    // Calculate ETH amount based on QSE tokens
     if (value && !isNaN(parseFloat(value))) {
       const tokens = parseFloat(value);
-      const eth = tokens / exchangeRate;
+      const eth = tokens / tokenRate;
       setEthAmount(eth.toFixed(6));
-
-      // Calculate post-burn amount
       calculateTokensAfterBurn(tokens);
     } else {
       setEthAmount("");
@@ -78,51 +78,53 @@ const TokenPurchaseModal: React.FC<TokenPurchaseModalProps> = ({
   };
 
   const validatePurchase = (): boolean => {
-    // Check if the purchase amount is valid
+    if (!isConnected) {
+      setErrorMessage("Please connect your wallet first");
+      return false;
+    }
+
     if (!ethAmount || parseFloat(ethAmount) <= 0) {
       setErrorMessage("Please enter a valid ETH amount");
       return false;
     }
 
-    // Check if the purchase would exceed available tokens
-    const requestedAmount = parseFloat(qseAmount);
-    if (requestedAmount > remainingSupply) {
-      setErrorMessage(
-        `Purchase exceeds available supply. Maximum available: ${remainingSupply} QSE`
-      );
+    if (!email || !email.includes("@")) {
+      setErrorMessage("Please enter a valid email address");
       return false;
     }
 
     return true;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate the purchase
     if (!validatePurchase()) {
       return;
     }
 
-    // For presentation purposes, simulate a purchase
     setIsSubmitting(true);
+    setErrorMessage("");
 
-    setTimeout(() => {
-      // In a real implementation, this would interact with your smart contract
+    try {
+      const result = await buyTokens(ethAmount, email);
+
+      if (result.success) {
+        setPurchaseCompleted(true);
+        const hashMatch = result.message.match(
+          /Transaction: (0x[a-fA-F0-9]{64})/
+        );
+        if (hashMatch && hashMatch[1]) {
+          setTxHash(hashMatch[1]);
+        }
+      } else {
+        setErrorMessage(result.message);
+      }
+    } catch (error: any) {
+      setErrorMessage(error.message || "An error occurred during purchase");
+    } finally {
       setIsSubmitting(false);
-      setPurchaseCompleted(true);
-
-      // For demo, reset after a few seconds
-      setTimeout(() => {
-        setPurchaseCompleted(false);
-        setEthAmount("");
-        setQaiAmount("");
-        setReceiveAmount("");
-        setBurnAmount("");
-        setEmail("");
-        onClose();
-      }, 3000);
-    }, 1500);
+    }
   };
 
   if (!isOpen) return null;
@@ -152,14 +154,39 @@ const TokenPurchaseModal: React.FC<TokenPurchaseModalProps> = ({
 
         <h2 className="text-2xl font-bold mb-6 text-center">Buy QSE Tokens</h2>
 
-        {purchaseCompleted ? (
+        {!isConnected ? (
+          <div className="text-center py-6">
+            <p className="mb-4">Connect your wallet to purchase QSE tokens</p>
+            <button
+              onClick={connectWallet}
+              disabled={isConnecting}
+              className={`w-full py-3 rounded-lg font-medium text-white bg-gradient-to-r from-[#a42e9a] to-[#5951f6] hover:opacity-90 transition duration-300 ${
+                isConnecting ? "opacity-70" : ""
+              }`}
+            >
+              {isConnecting ? "Connecting..." : "Connect Wallet"}
+            </button>
+          </div>
+        ) : purchaseCompleted ? (
           <div className="text-center py-6">
             <div className="text-green-400 text-5xl mb-4">✓</div>
             <h3 className="text-xl font-medium mb-2">Purchase Successful!</h3>
             <p className="mb-2">You will receive {receiveAmount} QSE tokens</p>
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-400 mb-4">
               {burnAmount} QSE tokens were burned in this transaction
             </p>
+            {txHash && (
+              <div className="mt-2 p-3 bg-[#151575] rounded-lg text-xs break-all">
+                <p className="font-medium mb-1">Transaction Hash:</p>
+                <p>{txHash}</p>
+              </div>
+            )}
+            <button
+              onClick={onClose}
+              className="mt-4 px-4 py-2 bg-gray-300 text-black rounded hover:bg-gray-400"
+            >
+              Close
+            </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
@@ -191,7 +218,7 @@ const TokenPurchaseModal: React.FC<TokenPurchaseModalProps> = ({
                   type="number"
                   min="1"
                   value={qseAmount}
-                  onChange={handleQaiInputChange}
+                  onChange={handleQseInputChange}
                   className="w-full bg-[#1a1a6a] rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="0"
                   required
@@ -199,7 +226,7 @@ const TokenPurchaseModal: React.FC<TokenPurchaseModalProps> = ({
                 <div className="absolute right-3 top-3 text-gray-300">QSE</div>
               </div>
               <div className="text-sm text-gray-400 mt-1">
-                Exchange Rate: 1 ETH = {exchangeRate} QSE
+                Exchange Rate: 1 ETH = {tokenRate} QSE
               </div>
             </div>
 
@@ -220,6 +247,13 @@ const TokenPurchaseModal: React.FC<TokenPurchaseModalProps> = ({
                 </div>
               </div>
             )}
+
+            <div className="mb-4">
+              <p className="text-sm text-gray-400 mb-2">Connected Wallet:</p>
+              <div className="p-2 bg-[#151575] rounded-lg text-sm break-all">
+                {account}
+              </div>
+            </div>
 
             <div className="mb-6">
               <label className="block text-sm font-medium mb-2">
@@ -254,7 +288,7 @@ const TokenPurchaseModal: React.FC<TokenPurchaseModalProps> = ({
         )}
 
         <div className="mt-4 text-center text-sm text-gray-400">
-          <p>For testing and demonstration purposes.</p>
+          <p>All transactions are processed on the blockchain.</p>
         </div>
       </div>
     </div>

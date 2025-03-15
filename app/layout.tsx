@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { Web3Provider } from "./components/Web3Provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,11 +17,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="App">
-          <Header />
-          {children}
-          <Footer />
-        </div>
+        <Web3Provider>
+          <div className="App">
+            <Header />
+            {children}
+            <Footer />
+          </div>
+        </Web3Provider>
       </body>
     </html>
   );
