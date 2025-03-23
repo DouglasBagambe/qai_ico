@@ -394,6 +394,10 @@ const TokenPurchaseModal: React.FC<TokenPurchaseModalProps> = ({
                 />
                 <div className="absolute right-3 top-3 text-gray-300">QSE</div>
               </div>
+              <div className="text-xs text-gray-400 mt-1">
+                Standard Rate: 1 USDT = {getQSEAmountFromPayment("1", "USDT")}{" "}
+                QSE
+              </div>
             </div>
 
             {receiveAmount && burnAmount && (
