@@ -31,6 +31,19 @@ const QSE_CROWDSALE_ADDRESS =
   process.env.NEXT_PUBLIC_QSE_CROWDSALE_ADDRESS ||
   "0xCe849ef42298587D7eA9761BF4d34F45395aE0F7";
 
+// Define the supported payment methods
+export type PaymentMethod = "ETH" | "USDT" | "USDC" | "USD";
+
+// Define rates against USD (these would come from an API in production)
+const PAYMENT_RATES = {
+  ETH: { usdRate: 3000, tokenSymbol: "ETH" }, // 1 ETH = $3000 USD
+  USDT: { usdRate: 1, tokenSymbol: "USDT" }, // 1 USDT = $1 USD
+  USDC: { usdRate: 1, tokenSymbol: "USDC" }, // 1 USDC = $1 USD
+  USD: { usdRate: 1, tokenSymbol: "$" }, // 1 USD = $1 USD (of course)
+};
+
+const QSE_TOKEN_PRICE_USD = 0.6; // QSE price in USD (e.g., $0.60 per QSE)
+
 const config = createConfig({
   chains: [sepolia],
   transports: {
@@ -48,10 +61,11 @@ type Web3ContextType = {
   chainId: number | null;
   qseToken: ethers.Contract | null;
   qseCrowdsale: ethers.Contract | null;
-  connectWallet: () => void;
+  connectWallet: () => Promise<boolean>;
   buyTokens: (
-    ethAmount: string,
-    email: string
+    amount: string,
+    email: string,
+    paymentMethod: PaymentMethod
   ) => Promise<{ success: boolean; message: string }>;
   isConnecting: boolean;
   isConnected: boolean;
@@ -59,6 +73,11 @@ type Web3ContextType = {
   burnRate: number;
   networkError: string | null;
   switchToSepolia: () => Promise<boolean>;
+  qseBalance: string;
+  loadQSEBalance: () => Promise<void>;
+  supportedPaymentMethods: PaymentMethod[];
+  getQSEAmountFromPayment: (amount: string, method: PaymentMethod) => number;
+  getPaymentRateForMethod: (method: PaymentMethod) => number;
 };
 
 const Web3Context = createContext<Web3ContextType>({
@@ -68,7 +87,7 @@ const Web3Context = createContext<Web3ContextType>({
   chainId: null,
   qseToken: null,
   qseCrowdsale: null,
-  connectWallet: () => {},
+  connectWallet: async () => false,
   buyTokens: async () => ({ success: false, message: "" }),
   isConnecting: false,
   isConnected: false,
@@ -76,6 +95,11 @@ const Web3Context = createContext<Web3ContextType>({
   burnRate: 2,
   networkError: null,
   switchToSepolia: async () => false,
+  qseBalance: "0",
+  loadQSEBalance: async () => {},
+  supportedPaymentMethods: ["ETH", "USDT", "USDC", "USD"],
+  getQSEAmountFromPayment: () => 0,
+  getPaymentRateForMethod: () => 0,
 });
 
 export const useWeb3 = () => useContext(Web3Context);
@@ -98,6 +122,29 @@ const Web3ContextProvider: React.FC<Web3ProviderProps> = ({ children }) => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
   const [networkError, setNetworkError] = useState<string | null>(null);
+  const [qseBalance, setQseBalance] = useState<string>("0");
+  const supportedPaymentMethods: PaymentMethod[] = [
+    "ETH",
+    "USDT",
+    "USDC",
+    "USD",
+  ];
+
+  // Function to get payment rate for a specific method
+  const getPaymentRateForMethod = (method: PaymentMethod): number => {
+    return PAYMENT_RATES[method].usdRate;
+  };
+
+  // Function to calculate QSE amount from payment amount and method
+  const getQSEAmountFromPayment = (
+    amount: string,
+    method: PaymentMethod
+  ): number => {
+    if (!amount || isNaN(parseFloat(amount))) return 0;
+
+    const paymentValue = parseFloat(amount) * PAYMENT_RATES[method].usdRate;
+    return paymentValue / QSE_TOKEN_PRICE_USD;
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.ethereum) {
@@ -129,6 +176,23 @@ const Web3ContextProvider: React.FC<Web3ProviderProps> = ({ children }) => {
       };
     }
   }, []);
+
+  // Function to load QSE token balance
+  const loadQSEBalance = async () => {
+    if (!qseToken || !account) {
+      setQseBalance("0");
+      return;
+    }
+
+    try {
+      const balance = await qseToken.balanceOf(account);
+      setQseBalance(ethers.formatUnits(balance, 18));
+      console.log("QSE Balance:", ethers.formatUnits(balance, 18));
+    } catch (error) {
+      console.error("Error loading QSE balance:", error);
+      setQseBalance("0");
+    }
+  };
 
   const switchToSepolia = async () => {
     if (!window.ethereum) {
@@ -230,6 +294,9 @@ const Web3ContextProvider: React.FC<Web3ProviderProps> = ({ children }) => {
         // Since the new QSEToken has a name() function, we can call it
         const tokenName = await token.name();
         console.log("QSE Token contract initialized, name:", tokenName);
+
+        // Load QSE balance
+        await loadQSEBalance();
       }
 
       if (QSE_CROWDSALE_ADDRESS) {
@@ -305,6 +372,7 @@ const Web3ContextProvider: React.FC<Web3ProviderProps> = ({ children }) => {
       setQseToken(null);
       setQseCrowdsale(null);
       setIsConnected(false);
+      setQseBalance("0");
     } else {
       setAccount(accounts[0]);
       setIsConnected(true);
@@ -319,13 +387,14 @@ const Web3ContextProvider: React.FC<Web3ProviderProps> = ({ children }) => {
         provider.getSigner().then((newSigner) => {
           setSigner(newSigner);
           if (QSE_TOKEN_ADDRESS) {
-            setQseToken(
-              new ethers.Contract(
-                QSE_TOKEN_ADDRESS,
-                QSETokenArtifact.abi,
-                newSigner
-              )
+            const tokenContract = new ethers.Contract(
+              QSE_TOKEN_ADDRESS,
+              QSETokenArtifact.abi,
+              newSigner
             );
+            setQseToken(tokenContract);
+            // Load QSE balance
+            loadQSEBalance();
           }
           if (QSE_CROWDSALE_ADDRESS) {
             const crowdsale = new ethers.Contract(
@@ -353,7 +422,7 @@ const Web3ContextProvider: React.FC<Web3ProviderProps> = ({ children }) => {
   const connectWallet = async () => {
     if (!provider) {
       setNetworkError("MetaMask or compatible wallet not detected");
-      return;
+      return false;
     }
 
     setIsConnecting(true);
@@ -371,6 +440,7 @@ const Web3ContextProvider: React.FC<Web3ProviderProps> = ({ children }) => {
       }
 
       handleAccountsChanged(accounts);
+      return accounts.length > 0;
     } catch (error: any) {
       console.error("Error connecting wallet:", error);
       if (error.code === 4001) {
@@ -380,12 +450,17 @@ const Web3ContextProvider: React.FC<Web3ProviderProps> = ({ children }) => {
           "Failed to connect wallet: " + (error.message || "Unknown error")
         );
       }
+      return false;
     } finally {
       setIsConnecting(false);
     }
   };
 
-  const buyTokens = async (ethAmount: string, email: string) => {
+  const buyTokens = async (
+    amount: string,
+    email: string,
+    paymentMethod: PaymentMethod
+  ) => {
     if (!signer || !qseCrowdsale) {
       return {
         success: false,
@@ -405,8 +480,33 @@ const Web3ContextProvider: React.FC<Web3ProviderProps> = ({ children }) => {
         }
       }
 
-      const weiAmount = ethers.parseEther(ethAmount);
-      const tokenAmount = weiAmount * BigInt(tokenRate); // Result in token units (18 decimals)
+      // For now, we only support ETH payments on-chain
+      // In a production environment, you would integrate with payment processors for USD
+      // and with other token contracts for USDT/USDC
+      if (paymentMethod !== "ETH") {
+        // This is a mock implementation - in production you'd handle other payment methods
+        if (paymentMethod === "USD") {
+          return {
+            success: false,
+            message:
+              "USD payments are currently being processed off-chain. Our team will contact you via email.",
+          };
+        } else {
+          return {
+            success: false,
+            message: `${paymentMethod} payments are not yet implemented on this network.`,
+          };
+        }
+      }
+
+      const weiAmount = ethers.parseEther(amount);
+
+      // Calculate token amount based on USD value
+      const ethUsdValue = parseFloat(amount) * getPaymentRateForMethod("ETH");
+      const tokenAmount = BigInt(
+        Math.floor((ethUsdValue / QSE_TOKEN_PRICE_USD) * 10 ** 18)
+      );
+
       const netTokenAmount =
         (tokenAmount * BigInt(100 - burnRate)) / BigInt(100);
 
@@ -468,6 +568,10 @@ const Web3ContextProvider: React.FC<Web3ProviderProps> = ({ children }) => {
       console.log("Transaction sent:", tx.hash);
       const receipt = await tx.wait();
       console.log("Transaction confirmed:", receipt);
+
+      // After successful purchase, reload the user's QSE balance
+      await loadQSEBalance();
+
       return { success: true, message: `Transaction: ${receipt.hash}` };
     } catch (error: any) {
       console.error("Buy Tokens Error:", error);
@@ -494,6 +598,11 @@ const Web3ContextProvider: React.FC<Web3ProviderProps> = ({ children }) => {
     burnRate,
     networkError,
     switchToSepolia,
+    qseBalance,
+    loadQSEBalance,
+    supportedPaymentMethods,
+    getQSEAmountFromPayment,
+    getPaymentRateForMethod,
   };
 
   return <Web3Context.Provider value={value}>{children}</Web3Context.Provider>;
