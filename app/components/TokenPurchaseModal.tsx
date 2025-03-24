@@ -518,7 +518,7 @@ const TokenPurchaseModal: React.FC<TokenPurchaseModalProps> = ({
         <div className="mt-4 text-center text-xs text-gray-400">
           <p>All transactions are processed on the blockchain.</p>
           <p>
-            QSE price is fixed at $0.60 per token, regardless of payment method.
+            QSE price is fixed at $0.60 per token, regardless of payment method!
           </p>
         </div>
       </div>
